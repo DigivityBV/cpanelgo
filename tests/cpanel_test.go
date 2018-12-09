@@ -2,6 +2,7 @@ package main
 
 import (
 	cp "cpanelgo/cpanel"
+	"fmt"
 	"testing"
 )
 
@@ -56,10 +57,22 @@ func TestListUsers(t *testing.T) {
 	}
 }
 
-func GetDomainInfo(t *testing.T) {
+func TestGetDomainInfo(t *testing.T) {
 	client := Auth(t)
 	_, err := client.GetDomainInfo()
 	if err != nil {
 		t.Error(err)
 	}
+}
+
+func TestCpanel(t *testing.T) {
+	module := "DiskUsage"
+	function := "buildcache"
+	username := ""
+	client := Auth(t)
+	msg, err := client.Cpanel(module, function, username)
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(msg)
 }
