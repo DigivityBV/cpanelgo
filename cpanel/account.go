@@ -15,6 +15,17 @@ func (cp *CP) ListAccounts() ([]gjson.Result, error) {
 	return value.Array(), nil
 }
 
+func (cp *CP) ListUsers() ([]gjson.Result, error) {
+
+	data, err := cp.runQuery("list_users", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	value := gjson.Get(string(data), "data.users")
+	return value.Array(), nil
+}
+
 func (cp *CP) CreateAccount(domain string, username string, password string) ([]gjson.Result, error) {
 
 	data, err := cp.runQuery("createacct", map[string]string{

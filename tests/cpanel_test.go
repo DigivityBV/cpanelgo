@@ -30,16 +30,27 @@ func TestListAccount(t *testing.T) {
 }
 
 func TestCreateAccount(t *testing.T) {
+	domain := ""
+	username := ""
+	passkey := ""
 	client := Auth(t)
-	_, err := client.CreateAccount("allstats.in", "allstats", "paperplanes123")
+	_, err := client.CreateAccount(domain, username, passkey)
 	if err != nil {
 		t.Error(err)
 	}
 }
 
 func TestRemoveAccount(t *testing.T) {
+	username := ""
 	client := Auth(t)
-	_, err := client.RemoveAccount("allstats")
+	_, err := client.RemoveAccount(username)
+	if err != nil {
+		t.Error(err)
+	}
+}
+func TestListUsers(t *testing.T) {
+	client := Auth(t)
+	_, err := client.ListUsers()
 	if err != nil {
 		t.Error(err)
 	}
