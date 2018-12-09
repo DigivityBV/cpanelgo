@@ -55,3 +55,11 @@ func TestListUsers(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func GetDomainInfo(t *testing.T) {
+	client := Auth(t)
+	_, err := client.GetDomainInfo()
+	if err != nil {
+		t.Error(err)
+	}
+}
